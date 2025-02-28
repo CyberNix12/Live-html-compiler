@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Compiler</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <style>
+        .glow-border {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white p-5 flex items-center justify-center min-h-screen">
+    <div class="max-w-4xl w-full bg-gray-800 p-6 rounded-lg shadow-xl relative overflow-hidden border-2 border-blue-500 glow-border">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-700 to-purple-700 opacity-20 animate-pulse"></div>
+        <h1 class="text-4xl font-bold text-center mb-5 flex items-center justify-center gap-2 relative z-10 text-cyan-400 drop-shadow-lg">
+            <i class='bx bx-code-alt text-cyan-400'></i> HTML Compiler
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+            <div class="flex flex-col">
+                <label for="htmlInput" class="mb-2 font-semibold">Kode HTML:</label>
+                <textarea id="htmlInput" class="w-full h-80 p-3 bg-gray-700 border border-gray-600 rounded-md text-white resize-none focus:ring-2 focus:ring-cyan-500 shadow-lg transition duration-300 hover:border-cyan-400" placeholder="Tulis kode HTML di sini..."></textarea>
+            </div>
+            <div class="flex flex-col">
+                <label class="mb-2 font-semibold">Output:</label>
+                <iframe id="output" class="w-full h-80 bg-white rounded-md border border-gray-600 shadow-xl"></iframe>
+            </div>
+        </div>
+        <button onclick="compileHTML()" class="mt-4 w-full py-3 bg-cyan-600 hover:bg-cyan-700 rounded-md text-white font-semibold flex items-center justify-center gap-2 text-lg transition duration-300 transform hover:scale-105 shadow-xl">
+            <i class='bx bx-play-circle'></i> Run Code
+        </button>
+    </div>
+
+    <script>
+        function compileHTML() {
+            const htmlCode = document.getElementById("htmlInput").value;
+            const outputFrame = document.getElementById("output").contentWindow.document;
+            outputFrame.open();
+            outputFrame.write(htmlCode);
+            outputFrame.close();
+        }
+    </script>
+</body>
+</html>
